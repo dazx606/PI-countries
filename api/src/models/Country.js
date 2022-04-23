@@ -27,15 +27,15 @@ module.exports = (sequelize) => {
     },
     subregion: {
       type: DataTypes.STRING,
-      allowNull: false,
+      
     },
     area: {
       type: DataTypes.STRING,
-      allowNull: false,
+      
     },
     population: {
       type: DataTypes.STRING,
-      allowNull: false,}
+    }
 
 
 

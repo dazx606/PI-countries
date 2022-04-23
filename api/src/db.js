@@ -1,4 +1,5 @@
 require('dotenv').config();
+const axios = require('axios').default;
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
@@ -32,6 +33,14 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Activity, Country, Activity_Country } = sequelize.models;
 
+// let countries = axios.get('https://restcountries.com/v3/all')
+// .then(function (response) {
+//   console.log("me resolvi");
+//   return response.data
+// })
+// .catch(function (error) {
+//   console.log(error);
+// });
 
 
 // Aca vendrian las relaciones
