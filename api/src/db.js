@@ -33,18 +33,6 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Activity, Country, Activity_Country } = sequelize.models;
 
-// let countries = axios.get('https://restcountries.com/v3/all')
-// .then(function (response) {
-//   console.log("me resolvi");
-//   return response.data
-// })
-// .catch(function (error) {
-//   console.log(error);
-// });
-
-
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
 
 Country.belongsToMany(Activity,{through: 'ativities_countries'});
 Activity.belongsToMany(Country,{through: 'ativities_countries'});
