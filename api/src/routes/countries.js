@@ -8,15 +8,27 @@ const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
+
+//GET all, filter and pages
 router.get("/", (req,res)=>{
     let {name} = req.query;
-    if(!name) Country.findAll().then(response=>{res.send(response)}).catch((err)=>{console.log(err);})
+    if(!name) Country.findAll({order:[["name","ASC"]]}).then(response=>{res.send(response)}).catch((err)=>{console.log(err);})
     else if(name) Country.findAll({where: {name: {[Op.substring]:`%${name}%`}}})
     .then((response)=>res.send(response))
     .catch((err)=>{console.log(err);})
 
 });
 
+//PAGES
+router.get("/page/:page",(req,res)=>{
+    let countries = req.body;
+    let page = req.params;
+
+
+})
+
+
+//GET by ID
 router.get("/:id", async (req,res)=>{
     let {id} = req.params;
 

@@ -1,0 +1,37 @@
+body, html {
+    height: 100%;
+}
+
+.bg {
+    background-image: url("../img/bgImg.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+
+
+.homeBtn {
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    padding: 13px 50px 13px;
+    outline: 0;
+    border: 1px solid black;
+    cursor: pointer;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: 45vh;
+  }
+  
+ 
+  
+  .homeBtn:hover {
+    top: 0px;
+    left: 0px;
+    background-color: rgba(145, 131, 131, 0.392);
+    
+  }

@@ -1,9 +1,11 @@
-
+import "../style/style.css"
+import { Link } from 'react-router-dom'
 
 function Home(){
     return(
-        <div>
-            <h1>Home</h1>
+        <div className="bg App">
+            <Link to="/countries"><button type="button" className="homeBtn">Simple</button></Link>
+            
         </div>
     )
 };
