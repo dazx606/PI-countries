@@ -29,8 +29,8 @@ conn.sync({ force: false }).then(async () => {
 //         continent: e.region,       
 //         capital: e.capital? e.capital[0] :"N/A",
 //         subregion: e.subregion,
-//         area: e.area,
-//         population: e.population
+//         area: parseInt(e.area),
+//         population: parseInt(e.population)
 //       });
 //   });
 // })

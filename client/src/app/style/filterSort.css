@@ -1,0 +1,10 @@
+.container{
+    padding: 0.5em;
+    display: flex;
+    justify-content: center;
+    
+}
+.izq1{
+    padding-right: 1.5em;
+    display: table-cell
+}

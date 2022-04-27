@@ -11,6 +11,3 @@ export const getAll = ()=>{
     }
 }
 
-export const log = () => {
-    console.log("HOLA");
-}
