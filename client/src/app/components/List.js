@@ -12,20 +12,13 @@ export default function List() {
     // const [result, setResult] =useState([]);
     const countries = useSelector(state => state.countries);
     const dispatch = useDispatch();
+    const page = useSelector(state => state.page)
 
     useEffect(() => {
 
         dispatch(getAll());
 
-
-        //     findAll()
-        //     .then((response)=>{
-        //         setResult(response)
-        //     })
-        //     .catch((err)=>console.log(err))
-
     }, [dispatch])
-    //  console.log(countries);
 
     return (
         <div className="A">
@@ -45,7 +38,8 @@ export default function List() {
                         </tr>
                     </thead>
                     <tbody>
-                        {countries && countries.slice(0, 10).map(e => (
+                        { 
+                        countries && countries.slice(page <= 1 ? 0 : page*10, page<=1 ? 9 : page*10 + 10).map(e => (
                             <tr key={e.id}>
                                 <th>     </th>
                                 <th><img src={e.img} alt={e.img} /></th>
@@ -57,7 +51,8 @@ export default function List() {
                                 <th>{e.population}</th>
                                 <th>{e.id}</th>
                             </tr>
-                        ))}
+                        ))
+                        }
                     </tbody>
 
 
@@ -67,3 +62,5 @@ export default function List() {
 
     )
 }
+
+

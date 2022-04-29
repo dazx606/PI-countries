@@ -8,7 +8,7 @@ function Countries (){
 
     return(
         <div className="App Country">
-            <container></container>
+    
             <Search/>
             <FilterSort/>
             <List/>           

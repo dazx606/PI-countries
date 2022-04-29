@@ -1,3 +1,4 @@
+const { response } = require('express');
 const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -10,7 +11,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 //create activity
-router.post("/", async (req,res)=>{
+router.post("/", async (req,res,next)=>{
    let activity = req.body
    
    try {
@@ -21,12 +22,12 @@ router.post("/", async (req,res)=>{
         season: activity.season
     }))
    } catch (error) {
-       res.status(404).send({"msg":"activity not created", "activity":activity})
+        next(error);
    }
 })
 
 //rel act and country
-router.post("/activity", async (req,res)=>{
+router.post("/activity", async (req,res,next)=>{
     
     try {
         let activity = req.body
@@ -34,8 +35,7 @@ router.post("/activity", async (req,res)=>{
         let act = await Activity.findOne({where:{id:activity.activityId}});
         res.send(await cnt.addActivity(act));
     } catch (error) {
-        console.log(error.message);
-        res.status(404).send(error.message)
+        next(error);
     }
     
     //await [activity.countryId].addActivity(activity.activityId)
@@ -47,16 +47,22 @@ router.post("/activity", async (req,res)=>{
 
 
  // get activity by id
- router.get("/activity/:id", async (req,res)=>{
+ router.get("/activity/:id", async (req,res,next)=>{
     let {id} = req.params;
     try {
         let cnt = await Country.findOne({ where: { id: id } });
         let acts = await cnt.getActivities();
         res.send(acts.length ? acts: "no related activities found");
     } catch (error) {
-        res.status(404)
-        console.log(error);
+        next(error);
     }
+ })
+
+ router.get("/",(req,res,next)=>{
+     Activity.findAll().then((response)=> res.send(response)).catch((err)=>{
+         console.log(err);
+         next(err);
+     })
  })
 
 module.exports = router;

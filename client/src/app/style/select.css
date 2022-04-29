@@ -1,11 +1,13 @@
 select{
     cursor: pointer;
-    padding: 0.15em;
+    padding: 0.1em;
     font-size: 1.5em;
     border-radius: 0.25em;
     color: white;
     background-color: #00B4CC;
     border: 1px solid #00B4CC;
+    width: 8em;
+    text-align: center;
 }
 
 option{
@@ -16,6 +18,9 @@ option:checked {
     background:#0196aa;
   }
 
-option div:hover, .same-as-selected {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
+
+option:hover
+    {
+        cursor: pointer
+        
+    }
