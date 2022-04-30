@@ -1,4 +1,4 @@
-import { FILTER_CONT, GET_ACTS, GET_ALL, GET_CONTS, GET_PAGES, SET_CONT, SET_ORDER, SET_PAGE, SET_SEARCH } from "../actions/actionType"
+import { FILTER_CONT, FILT_ACT, GET_ACTS, GET_ALL, GET_CONTS, GET_PAGES, SET_ACT, SET_CONT, SET_ORDER, SET_PAGE, SET_SEARCH } from "../actions/actionType"
 
 const initialState = {
     countries: [],
@@ -7,10 +7,10 @@ const initialState = {
     activities: [],
     country: {},
     pages: 1,
-    //[{"A-Z":"ASC"},"Z-A","more populated","less populated"],
     search: "",
     ordering: "A-Z",
-    continent: ""
+    continent: "",
+    activity:""
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -22,6 +22,14 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 countries: payload
             }
         }
+
+        case FILT_ACT:{
+            return{
+                ...state,
+                countries: payload
+            }
+        }
+
         case GET_CONTS: {
             return {
                 ...state,
@@ -35,10 +43,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
             }
         }
         case GET_PAGES: {
+            console.log(state.countries.length);
+            console.log(Math.ceil((state.countries.length - 9) / 10)+1 );
             return {
                 ...state,
                 // 
-                pages: parseInt((state.countries.length - 9) / 10) > 10 ? parseInt((state.countries.length - 9) / 10) : 1
+                pages: (state.countries.length - 9) > 0 ? Math.ceil((state.countries.length - 9) / 10)+1 : 1
             }
         }
 
@@ -74,6 +84,13 @@ export default function rootReducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 countries: state.countries.filter(e => e.continent === state.continent)
+            }
+        }
+
+        case SET_ACT:{
+            return{
+                ...state,
+                activity: payload
             }
         }
 

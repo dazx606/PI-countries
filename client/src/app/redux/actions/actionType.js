@@ -9,3 +9,5 @@ export const SET_PAGE = "SET_PAGE";
 export const SET_ORDER = "SET_ORDER";
 export const FILTER_CONT = "FILTER_CONT";
 export const SET_CONT = "SET_CONT";
+export const FILT_ACT = "FILT_ACT";
+export const SET_ACT = "SET_ACT";

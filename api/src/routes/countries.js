@@ -44,34 +44,32 @@ const router = Router();
 // });
 
 router.get("/", async (req, res, next) => {
-    let { order, activity, name, continent } = req.query;
+    let { order, name, continent } = req.query;
 
     try {
         let data1 = await Country.findAll({ order: [["name", "ASC"]] });
+        let continents = ["Europe", "Asia", "Americas", "Africa", "Oceania", "Antarctic"]
 
-        if (!activity) {
-            if (!name && !order) continent ? res.send(data1.filter(e => e.continent === continent)) : res.send(data1)
-            else if (name) {
-                data1 = await Country.findAll({ order: [["name", "ASC"]], where: { name: { [Op.substring]: `%${name}%` } } })
-                if (!order) {
-                    continent ? res.send(data1.filter(e => e.continent === continent)) : res.send(data1)
-                } else if (order) {
-                    order.includes("A") ? data1 : data1 = await Country.findAll({ order: [["population", "ASC"]], where: { name: { [Op.substring]: `%${name}%` } } })
-                    if (order === "A-Z") continent ? res.send(data1.filter(e => e.continent === continent)) : res.send(data1)
-                    if (order === "less populated") continent ? res.send(data1.filter(e => e.continent === continent)) : res.send(data1)
-                    if (order === "Z-A") continent ? res.send(data1.filter(e => e.continent === continent).reverse()) : res.send(data1.reverse())
-                    if (order === "more populated") continent ? res.send(data1.filter(e => e.continent === continent).reverse()) : res.send(data1.reverse())
-                }
-            } else if (!name) {
-                order.includes("A") ? data1 : data1 = await Country.findAll({ order: [["population", "ASC"]] })
-                if (order === "A-Z") continent ? res.send(data1.filter(e => e.continent === continent)) : res.send(data1)
-                if (order === "less populated") continent ? res.send(data1.filter(e => e.continent === continent)) : res.send(data1)
-                if (order === "Z-A") continent ? res.send(data1.filter(e => e.continent === continent).reverse()) : res.send(data1.reverse())
-                if (order === "more populated") continent ? res.send(data1.filter(e => e.continent === continent).reverse()) : res.send(data1.reverse())
+
+        if (!name && !order) continent ? res.send(data1.filter(e => e.continent === continent)) : res.send(data1)
+        else if (name) {
+            data1 = await Country.findAll({ order: [["name", "ASC"]], where: { name: { [Op.substring]: `%${name}%` } } })
+            if (!order) {
+                continents.includes(continent) ? res.send(data1.filter(e => e.continent === continent)) : res.send(data1)
+            } else if (order) {
+                order.includes("A") ? data1 : data1 = await Country.findAll({ order: [["population", "ASC"]], where: { name: { [Op.substring]: `%${name}%` } } })
+                if (order === "A-Z") continents.includes(continent) ? res.send(data1.filter(e => e.continent === continent)) : res.send(data1)
+                if (order === "lower population") continents.includes(continent) ? res.send(data1.filter(e => e.continent === continent)) : res.send(data1)
+                if (order === "Z-A") continents.includes(continent) ? res.send(data1.filter(e => e.continent === continent).reverse()) : res.send(data1.reverse())
+                if (order === "higher population") continents.includes(continent) ? res.send(data1.filter(e => e.continent === continent).reverse()) : res.send(data1.reverse())
             }
-        } else if (activity) { null }
-
-
+        } else if (!name) {
+            order.includes("A") ? data1 : data1 = await Country.findAll({ order: [["population", "ASC"]] })
+            if (order === "A-Z") continents.includes(continent) ? res.send(data1.filter(e => e.continent === continent)) : res.send(data1)
+            if (order === "lower population") continents.includes(continent) ? res.send(data1.filter(e => e.continent === continent)) : res.send(data1)
+            if (order === "Z-A") continents.includes(continent) ? res.send(data1.filter(e => e.continent === continent).reverse()) : res.send(data1.reverse())
+            if (order === "higher population") continents.includes(continent) ? res.send(data1.filter(e => e.continent === continent).reverse()) : res.send(data1.reverse())
+        }
     } catch (error) {
         next(error)
     }
@@ -89,13 +87,6 @@ router.get("/continents", async (req, res, next) => {
     }
 });
 
-// router.get("/continentes/filtered",(req,res,next)=>{
-//     try {
-
-//     } catch (error) {
-//         next(error)
-//     }
-// })
 
 
 //GET by ID

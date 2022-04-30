@@ -12,7 +12,7 @@ export default function List() {
     // const [result, setResult] =useState([]);
     const countries = useSelector(state => state.countries);
     const dispatch = useDispatch();
-    const page = useSelector(state => state.page)
+    const page = useSelector(state => state.page);
 
     useEffect(() => {
 
@@ -39,7 +39,8 @@ export default function List() {
                     </thead>
                     <tbody>
                         { 
-                        countries && countries.slice(page <= 1 ? 0 : page*10, page<=1 ? 9 : page*10 + 10).map(e => (
+                        
+                        countries && countries.slice(page <= 1 ? 0 : ((page-1)*10)-1, page <=1 ? 9 : page*10).map(e => (
                             <tr key={e.id}>
                                 <th>     </th>
                                 <th><img src={e.img} alt={e.img} /></th>
@@ -47,7 +48,7 @@ export default function List() {
                                 <th>{e.continent}</th>
                                 <th>{e.subregion}</th>
                                 <th>{e.capital}</th>
-                                <th>{e.area}</th>
+                                <th>{e.area} km2</th>
                                 <th>{e.population}</th>
                                 <th>{e.id}</th>
                             </tr>
@@ -62,5 +63,9 @@ export default function List() {
 
     )
 }
+
+
+console.log(Math.ceil((49 - 9) / 10)+1);
+
 
 

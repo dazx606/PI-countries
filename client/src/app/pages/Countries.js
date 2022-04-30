@@ -2,6 +2,7 @@ import List from "../components/List";
 import "../../App.css"
 import Search from "../components/Search";
 import FilterSort from "../components/FilterSort";
+import PopupForm from "../components/PopupForm";
 
 
 function Countries (){
@@ -11,7 +12,8 @@ function Countries (){
     
             <Search/>
             <FilterSort/>
-            <List/>           
+            <List/>   
+            <PopupForm/>        
         </div>
     )
 }

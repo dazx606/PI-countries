@@ -1,15 +1,26 @@
 import { findAll, findContinents } from "../../services/countriesService";
-import { FILTER_CONT, GET_ACTS, GET_ALL, GET_CONTS, GET_PAGES, SET_CONT, SET_ORDER, SET_PAGE, SET_SEARCH } from "./actionType";
-import {findAllAc} from "../../services/activitiesService"
+import { findAllAc, getCountAct } from "../../services/activitiesService";
+import { FILTER_CONT, FILT_ACT, GET_ACTS, GET_ALL, GET_CONTS, GET_PAGES, SET_ACT, SET_CONT, SET_ORDER, SET_PAGE, SET_SEARCH } from "./actionType";
 
-export const getAll = (country, order)=>{
+
+export const getAll = (country, order, continent)=>{
     return (dispatch)=>{
-        return findAll(country, order)
+        return findAll(country, order, continent)
         .then((response)=>{
             dispatch({type: GET_ALL, payload: response})
         })
-        .catch((err)=>console.log(err))
-    }
+        .catch((err)=>console.log(err));
+    };
+};
+
+export const getCountriesByAct = (nameACt, name, order, continent) =>{
+    return (dispatch)=>{
+        return getCountAct(nameACt,name,order,continent)
+        .then(response => {
+            dispatch({type: FILT_ACT, payload: response})
+        })
+        .catch(err=>console.log(err));
+    };
 };
 
 export const getContinents = () => {
@@ -18,8 +29,8 @@ export const getContinents = () => {
             .then((response)=>{
                 dispatch({type: GET_CONTS, payload: response})
             })
-            .catch((err)=>console.log(err))
-    }
+            .catch((err)=>console.log(err));
+    };
 };
 
 export const getActivities = () => {
@@ -28,16 +39,16 @@ export const getActivities = () => {
             .then((response)=>{
                 dispatch({type: GET_ACTS, payload: response})
             })
-            .catch((err)=>console.log(err))
-    }
+            .catch((err)=>console.log(err));
+    };
 };
 
 export const setSch = (seacrh) => {
     return {
         type: SET_SEARCH,
         payload: seacrh
-    }
-}
+    };
+};
 
 export const getPages = () => {
     return {
@@ -49,7 +60,7 @@ export const setPage = (page) => {
     return {
         type: SET_PAGE,
         payload: page,
-    }
+    };
 };
 
 export const setOrder = (order) =>
@@ -57,18 +68,27 @@ export const setOrder = (order) =>
     return {
         type: SET_ORDER,
         payload: order
-    }
+    };
 };
 
 export const filterCont = () =>{
     return{
         type: FILTER_CONT,
-    }
+    };
 };
 
 export const setCont = (continent) =>{
     return{
         type: SET_CONT,
         payload: continent
-    }
-}
+    };
+};
+
+export const setAct = (activity) => {
+    return{
+        type: SET_ACT,
+        payload: activity
+    };
+};
+
+
