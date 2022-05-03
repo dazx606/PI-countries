@@ -5,7 +5,7 @@
     padding: 0.5em 1.3em;
     border: none;
     cursor: pointer;
-    opacity: 0.8;
+    
     width: 30vh;
     font-size: 1.5em;
     border-radius: 0.3em;
@@ -34,13 +34,15 @@
 
 
 .form-container input[type=text],
-.form-container input[type=password] {
+.form-container input[type=number] {
     width: 95%;
     padding: 1em;
     margin: 0.3em 0 1.5em 0;
     border: none;
     background: #f1f1f1;
 }
+
+
 
 
 
@@ -57,12 +59,12 @@
     font-size: 1em;
 }
 
-/* Add a red background color to the cancel button */
+
 .form-container .cancel {
     background-color: rgba(255, 0, 0, 0.877);
 }
 
-/* Add some hover effects to buttons */
+
 .form-container .btn:hover,
 .open-button:hover {
     opacity: 1;
@@ -74,4 +76,11 @@
 }
 .label{
     padding-top: 2em;
+}
+.countries{
+    padding: 0.5em;
+}
+
+.season{
+    padding: 0.5em;
 }

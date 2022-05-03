@@ -1,4 +1,4 @@
-img{
+.Table img{
     height: 1.5em;
     width: 2em;
 }
@@ -14,11 +14,12 @@ img{
     border: 1px solid rgba(0, 0, 0, 0.274);
     border-radius: 1em;
     background-color: white;
+    overflow-x:auto;
 }
 .A{
     display: flex;
     justify-content: center;
-    padding-bottom: 2em;
+    padding-bottom: 1em;
 }
 
 .Table th{
@@ -29,5 +30,9 @@ img{
     border-bottom: 1px solid rgba(0, 0, 0, 0.138);
 }
 
+.overname:hover{
+    color:#00B4CC;
+    cursor: pointer;
+}
 
 

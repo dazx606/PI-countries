@@ -4,7 +4,12 @@
     justify-content: center;
     
 }
-.izq1{
-    padding-right: 1.5em;
-    display: table-cell
-}
+
+@media (min-width: 830px) {
+    .izq1{
+        padding-right: 1.5em;
+        display: table-cell
+    }
+  }
+
+

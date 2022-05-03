@@ -1,39 +1,64 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { allCountries, getActivities, setSeason } from "../redux/actions";
+import { createActivity } from "../services/activitiesService";
 import "../style/popupForm.css"
 
-function validate(input) {
-    
-    let errors = {};
 
-    if (!input.activity) errors.activity = 'Activity is required';
-    else if (!/^[A-Za-z]*$/.test(input.activity)) errors.activity = 'Numbers and special characters are not allowed';
-    else if (input.activity.length < 4) errors.activity = "length must be greater than 4"
-
-    if (!input.dificulty) errors.dificulty = 'Dificulty is required';
-    else if (!/^[A-Za-z]*$/.test(input.dificulty)) errors.dificulty = 'Numbers and special characters are not allowed';
-    else if (input.dificulty.length < 4) errors.dificulty = "length must be greater than 4"
-
-    if (!input.season) errors.season = 'Season is required';
-    else if (!/^[A-Za-z]*$/.test(input.season)) errors.season = 'Numbers and special characters are not allowed';
-    else if (input.season.length < 4) errors.season = "length must be greater than 4"
-
-    if (!input.duration) errors.duration = 'Duration is required';
-    else if (!/^[0-9]*$/.test(input.duration)) errors.duration = 'Only numbers are allowed';
+import SelectPopup from "./SelectPopup";
+import SelectPopupCountry from "./SelectPopupCountry";
 
 
-    return errors;
-};
 
 export default function PopupForm() {
 
+    function validate(input) {
+
+        let errors = {};
+
+        if (!input.activity) errors.activity = 'Activity is required';
+        else if (input.activity.length < 4 || input.activity.length > 20) errors.activity = "length must be greater than 4 and lower than 20"
+
+        if (!input.difficulty) errors.difficulty = 'Difficulty is required and must be a number between 1 and 5';
+        else if (parseInt(input.difficulty) < 1 || parseInt(input.difficulty) > 5) errors.difficulty = 'Difficulty must be a number between 1 and 5';
+
+        if (input.season === "") errors.season = 'Season is required';
+
+        if (!input.duration) errors.duration = 'Duration is required';
+        else if(input.duration<0) errors.duration = 'Duration must be a possitive number';
+
+        if (input.countries?.length < 1) errors.country = "Country must be selected";
+
+        //document.getElementById("Winter").checked || document.getElementById("Spring").checked || document.getElementById("Autumn").checked || document.getElementById("Summer").checked
+
+        return errors;
+    };
+
+    //CHECKS--------------------------------------------------------------------------------------------------
+    const [checkSeason, setCheackSeason] = useState('false');
+    const seasons = [{ name: "Winter", id: 1 }, { name: "Spring", id: 2 }, { name: "Autumn", id: 3 }, { name: "Summer", id: 4 }];
+    const countries = useSelector(state => state.all);
+    let season = useSelector(state => state.season);
+    const [countryCheck, setCountryCheck] = useState([]);
+    const [wasChecked, setWasChecked] = useState([]);
+
+    //---------------------------------------------------------------------------------------------------------
+    const dispatch = useDispatch();
     const [errors, setErrors] = useState({});
     const [show, setShow] = useState(true);
     const [input, setInput] = useState({
         activity: '',
-        dificulty: '',
+        difficulty: '',
         season: '',
         duration: '',
+        country: '',
+        countries: []
     });
+    useEffect(() => {
+        dispatch(allCountries())
+    }, [dispatch])
+
+
 
     function openForm() { setShow(false) };
 
@@ -52,44 +77,111 @@ export default function PopupForm() {
 
     };
 
-    function handleClick (event){
+    function handleClick(event) {
         event.preventDefault();
-        console.log("SI");
+
+        createActivity(document.getElementById("activity").value, document.getElementById("duration").value
+            , document.getElementById("difficulty").value, season, wasChecked)
+            .then(response => {
+                    
+                setInput({
+                        activity: '', difficulty: '', season: '', duration: '',
+                    })
+                    dispatch(setSeason(""));
+                    setCheackSeason(false);
+                    wasChecked.forEach(e => document.getElementById(e).checked = false);
+                    dispatch(getActivities());
+                    response.message && alert(response.message)
+              
+            }).catch(err => {
+                console.log(err)})
+
+
+
     };
 
-    function block(){
-        if(input.activity.length<1 || Object.keys(errors).length>0) return true
-        
+    function block() {
+        if (input.activity.length < 1 || Object.keys(errors).length > 0) return true
+
     }
 
     return (
         <div className="forms">
             <button className="open-button" onClick={() => openForm()}>Add activity</button>
 
+
             <div className="form-popup" hidden={show}>
                 <form className="form-container">
                     <h1>Add activity</h1>
+
+                    <div className="countries">
+                        <div className="countries">
+                            <SelectPopupCountry name={"Select countries"} options={countries}
+                                click={
+                                    (e) => {
+                                        let newCountries = [...countryCheck]
+                                        let newChecked = [...wasChecked]
+                                        if (!e.target.checked) {
+                                            newCountries = countryCheck.filter(el => el !== e.target.value);
+                                            newChecked = wasChecked.filter(el => el !== e.target.id);
+                                        }
+                                        else if (e.target.checked) {
+                                            newCountries = [...countryCheck, e.target.value];
+                                            newChecked = [...wasChecked, e.target.id];
+                                        }
+                                        setCountryCheck(newCountries);
+                                        setWasChecked(newChecked);
+                                        setInput({
+                                            ...input,
+                                            countries: newCountries
+                                        })
+                                        setErrors(validate({
+                                            ...input,
+                                            countries: newCountries
+                                        }));
+                                    }
+                                } />
+
+
+                            <div><output className="danger">{errors.country}</output></div>
+                        </div>
+                    </div>
+                    <div className="season">
+                        <SelectPopup name={"Select season"} options={seasons} check={checkSeason}
+                            change={(e) => {
+                                setCheackSeason(e.target.value);
+                                setInput({
+                                    ...input,
+                                    season: e.target.value
+                                })
+                                setErrors(validate({
+                                    ...input,
+                                    season: e.target.value
+                                }));
+                            }} />
+                        <div><output className="danger">{errors.season}</output></div>
+                    </div>
                     <div>
-                        <label className="label" htmlFor="activity"><b>Activity</b></label>
-                        <input type="text" placeholder="Enter Activity" name="activity" onChange={handleInputChange} />
+                        <label className="label" htmlFor="activity"><b>Activity</b>
+                            <input type="text" placeholder="Enter Activity" name="activity" id="activity" onChange={handleInputChange}
+                                value={input.activity} />
+                        </label>
                         <output className="danger">{errors.activity}</output>
                     </div>
                     <div>
-                        <label className="label" htmlFor="dificulty"><b>Dificulty</b></label>
-                        <input type="text" placeholder="Enter Dificulty" name="dificulty" onChange={handleInputChange} />
-                        <output className="danger">{errors.dificulty}</output>
+                        <label className="label" htmlFor="difficulty"><b>Difficulty</b>
+                            <input type="number" placeholder="Enter Difficulty" name="difficulty" id="difficulty" onChange={handleInputChange}
+                                value={input.difficulty} />
+                        </label>
+                        <output className="danger">{errors.difficulty}</output>
                     </div>
                     <div>
-                        <label className="label" htmlFor="season"><b>Season</b></label>
-                        <input type="text" placeholder="Enter Season" name="season" onChange={handleInputChange} />
-                        <output className="danger">{errors.season}</output>
-                    </div>
-                    <div>
-                        <label className="label" htmlFor="duration"><b>Duration</b></label>
-                        <input type="text" placeholder="Enter Duration" name="duration" onChange={handleInputChange} />
+                        <label className="number" htmlFor="duration"><b>Duration [hr]</b></label>
+                        <input type="text" placeholder="Enter Duration" name="duration" id="duration" onChange={handleInputChange}
+                            value={input.duration} />
                         <output className="danger">{errors.duration}</output>
                     </div>
-                    <button type="button" className="btn" disabled={block()} onClick={(e)=>handleClick(e)}>Add</button>
+                    <button type="button" className="btn" disabled={block()} onClick={(e) => handleClick(e)}>Add</button>
                     <button type="button" className="btn cancel" onClick={() => closeForm()}>Close</button>
                 </form>
             </div>

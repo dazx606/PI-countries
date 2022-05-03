@@ -11,3 +11,5 @@ export const FILTER_CONT = "FILTER_CONT";
 export const SET_CONT = "SET_CONT";
 export const FILT_ACT = "FILT_ACT";
 export const SET_ACT = "SET_ACT";
+export const ALL = "ALL";
+export const SET_SEASON = "SET_SEASON";

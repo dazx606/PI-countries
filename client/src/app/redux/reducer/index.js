@@ -1,4 +1,4 @@
-import { FILTER_CONT, FILT_ACT, GET_ACTS, GET_ALL, GET_CONTS, GET_PAGES, SET_ACT, SET_CONT, SET_ORDER, SET_PAGE, SET_SEARCH } from "../actions/actionType"
+import { ALL, FILTER_CONT, FILT_ACT, GET_ACTS, GET_ALL, GET_CONTS, GET_COUNTRY, GET_PAGES, SET_ACT, SET_CONT, SET_ORDER, SET_PAGE, SET_SEARCH, SET_SEASON } from "../actions/actionType"
 
 const initialState = {
     countries: [],
@@ -10,7 +10,9 @@ const initialState = {
     search: "",
     ordering: "A-Z",
     continent: "",
-    activity:""
+    activity:"",
+    all:[],
+    season:''
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -20,6 +22,27 @@ export default function rootReducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 countries: payload
+            }
+        }
+
+        case GET_COUNTRY:{
+            return{
+                ...state,
+                country: payload
+            }
+        }
+
+        case SET_SEASON:{
+            return{
+                ...state,
+                season:payload
+            }
+        }
+
+        case ALL:{
+            return {
+                ...state,
+                all: payload
             }
         }
 
@@ -43,8 +66,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
             }
         }
         case GET_PAGES: {
-            console.log(state.countries.length);
-            console.log(Math.ceil((state.countries.length - 9) / 10)+1 );
+            
             return {
                 ...state,
                 // 

@@ -36,7 +36,7 @@ export default function FilterSort() {
                 dispatch(setOrder(e.target.value));
                 dispatch(setPage(1));
                 if(activity===""||activity==="All"){
-                    dispatch(getAll(search,e.target.value));
+                    dispatch(getAll(search,e.target.value,continent?continent:undefined));
                 } else{
                     dispatch(getCountriesByAct(activity,search ?search: undefined, e.target.value, continent?continent:undefined))
                 }
@@ -59,7 +59,6 @@ export default function FilterSort() {
                 dispatch(setPage(1));
                 dispatch(setAct(e.target.value));
                 e.target.value !== "All"? 
-                //console.log(e.target.value)
                 dispatch(getCountriesByAct(e.target.value,search ?search: undefined, order ? order : undefined, continent? continent : undefined ))
                 :
                 dispatch(getAll(search,order,continent))
@@ -76,7 +75,7 @@ export default function FilterSort() {
                     <>Select continent:</>
                     <SelectForm id="continents" func={filters} select="continent" options={continents} value={continent} />
                 </div>
-                <div className="izq1">
+                <div className="izq1" >
                     <>Select activity:</>
                     <SelectForm id="activities" func={filters} select="activity" options={activities} />
                 </div>

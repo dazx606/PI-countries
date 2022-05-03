@@ -63,5 +63,17 @@ export function findContinents() {
         .catch((err) => console.log(err))
 };
 
+export function getOne(id){
+    const path =`/${id}`
+    const config = {
+        method: "GET",
+        mode: "cors",
+    }
+
+    return fetch(URL_API_COUNTRIES + path, config)
+    .then(response => response.ok ? response.json() : Promise.reject(response.statusText))
+    .catch(err=>console.log(err))
+};
+
 
 
