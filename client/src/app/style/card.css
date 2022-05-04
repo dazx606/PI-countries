@@ -5,9 +5,12 @@
     left: 35vw;
     height: auto;
     width: 30vw;
-    background-color: white;
+    background-color: rgb(231, 237, 243);
+   
+    border-radius: 1em;
     
 }
+
 
 @media (max-width: 980px) {
     .card-container{position: absolute;
@@ -15,7 +18,7 @@
     width: 50vw;
     left: 25vw;
     height: auto;
-    background-color: white;
+    background-color: rgb(231, 237, 243);
 }}
 
 @media (max-width: 570px) {
@@ -24,7 +27,7 @@
     width: 70vw;
     left: 15vw;
     height: auto;
-    background-color: white;
+    background-color: rgb(231, 237, 243);
 }}
 
 .card-container button{

@@ -8,7 +8,7 @@ export default function SelectForm(props) {
         <div>
             <form>
                 <select name={props.select} id={props.id} onChange={props.func} value={props.value} >
-                  
+                    
                     {props.options && props.options.map(e => (
                         <option  value={e} key={e}>{e}</option>
                     ))}

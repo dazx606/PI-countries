@@ -11,29 +11,30 @@ export default function Card(props) {
         <div>
           <img src={props.img} alt="flagImg" />
         </div>
-        <h3 className="">{props.name}</h3>
+        <h3 className="">{props.name&& props.name[0].toUpperCase() + props.name.slice(1)}</h3>
         <h4>ID: {props.id}</h4>
         <div className="">
           <div>
-            <p>Capital: {props.capital}</p>
+            <p><b>Capital:</b> {props.capital}</p>
           </div>
 
           <div>
-            <p>Continent: {props.continent}</p>
+            <p><b>Continent:</b> {props.continent}</p>
           </div>
           <div>
-            <p>subregion: {props.subregion}</p>
+            <p><b>Subregion:</b> {props.subregion}</p>
           </div>
           <div>
-            <p>Area: {props.area + " km2"}</p>
+            <p><b>Area:</b> {props.area + " km2"}</p>
           </div>
           <div>
-            <p>Population: {props.population}</p>
+            <p><b>Population:</b> {props.population}</p>
           </div>
           <div>
-            {props.activities && props.activities.map(e => (
-          <p>activities: {e.name}</p>
-            ))}
+           <p><b>Activities:</b> </p>
+            {props.activities && props.activities.length>0? props.activities.map(e => (
+          <p key={e.name}>{e.name}</p>
+            )):<p>No activities</p>}
           </div>
         </div>
       </div>

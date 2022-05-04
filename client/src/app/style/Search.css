@@ -4,11 +4,11 @@
   display: flex;
   justify-content: center;
   margin-top: 2em;
-  margin-bottom: 1em;
+  margin-bottom: 1em; 
 }
 
 .searchTerm {
-  width: 30%;
+  width: 60%;
   border: 3px solid #00B4CC;
   border-right: none;
   padding: 5px;
@@ -16,7 +16,9 @@
   border-radius: 5px 0 0 5px;
   outline: none;
   color: black;
-  font-size: 1em;
+  font-size: 1.3em;
+  background-color: rgba(255, 255, 255, 0.842);
+  max-width: 400px;
 }
 
 .searchTerm:focus{

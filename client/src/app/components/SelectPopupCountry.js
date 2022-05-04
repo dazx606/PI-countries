@@ -1,7 +1,7 @@
 import "../style/selectPop.css"
 
 export default function SelectPopupCountry(props) {
-
+    
     return (
         <>
             <div className="dropdown">
@@ -10,8 +10,8 @@ export default function SelectPopupCountry(props) {
                     {   
                         props.options &&
                         props.options.map(e => (
-                            <div key={e.id}  ><label ><input type="checkbox" 
-                            onClick={props.click} id={e.id} value={e.name}/> {e.name}</label></div>
+                            <div key={e.id} className={props.check?.includes(e.id)?"check":""} ><label ><input type="checkbox" 
+                            onClick={props.click} id={e.id} value={e.name}/> {e.name && e.name[0].toUpperCase() + e.name.slice(1)}</label></div>
                         ))
                     }
                 </div>

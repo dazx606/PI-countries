@@ -17,7 +17,7 @@ export default function PopupForm() {
         let errors = {};
 
         if (!input.activity) errors.activity = 'Activity is required';
-        else if (input.activity.length < 4 || input.activity.length > 20) errors.activity = "length must be greater than 4 and lower than 20"
+        else if (input.activity.length < 3 || input.activity.length > 15) errors.activity = "length must be greater than 3 and lower than 15"
 
         if (!input.difficulty) errors.difficulty = 'Difficulty is required and must be a number between 1 and 5';
         else if (parseInt(input.difficulty) < 1 || parseInt(input.difficulty) > 5) errors.difficulty = 'Difficulty must be a number between 1 and 5';
@@ -25,7 +25,8 @@ export default function PopupForm() {
         if (input.season === "") errors.season = 'Season is required';
 
         if (!input.duration) errors.duration = 'Duration is required';
-        else if(input.duration<0) errors.duration = 'Duration must be a possitive number';
+        else if (input.duration < 0) errors.duration = 'Duration must be a possitive number';
+        else if (input.duration > 999) errors.duration = 'Duration must be a lowe than 999 hours';
 
         if (input.countries?.length < 1) errors.country = "Country must be selected";
 
@@ -83,31 +84,33 @@ export default function PopupForm() {
         createActivity(document.getElementById("activity").value, document.getElementById("duration").value
             , document.getElementById("difficulty").value, season, wasChecked)
             .then(response => {
-                    
+
                 setInput({
-                        activity: '', difficulty: '', season: '', duration: '',
-                    })
-                    dispatch(setSeason(""));
-                    setCheackSeason(false);
-                    wasChecked.forEach(e => document.getElementById(e).checked = false);
-                    dispatch(getActivities());
-                    response.message && alert(response.message)
-              
+                    activity: '', difficulty: '', season: '', duration: '',
+                })
+                dispatch(setSeason(""));
+                setCheackSeason(false);
+                wasChecked.forEach(e => document.getElementById(e).checked = false);
+                dispatch(getActivities());
+                response.message && alert(response.message)
+
             }).catch(err => {
-                console.log(err)})
-
-
-
+                console.log(err)
+            })
     };
 
     function block() {
         if (input.activity.length < 1 || Object.keys(errors).length > 0) return true
 
+    };
+    function handleClickBtn() {
+        if (show === true) { openForm() }
+        else closeForm()
     }
 
     return (
         <div className="forms">
-            <button className="open-button" onClick={() => openForm()}>Add activity</button>
+            <button className="open-button" onClick={handleClickBtn}>Add activity</button>
 
 
             <div className="form-popup" hidden={show}>
@@ -116,7 +119,7 @@ export default function PopupForm() {
 
                     <div className="countries">
                         <div className="countries">
-                            <SelectPopupCountry name={"Select countries"} options={countries}
+                            <SelectPopupCountry name={"Select countries"} options={countries} check={wasChecked}
                                 click={
                                     (e) => {
                                         let newCountries = [...countryCheck]

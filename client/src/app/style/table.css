@@ -13,7 +13,7 @@
 .BackTable{
     border: 1px solid rgba(0, 0, 0, 0.274);
     border-radius: 1em;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.678);
     overflow-x:auto;
 }
 .A{
@@ -30,9 +30,16 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.138);
 }
 
+.Table tr:hover{
+    background-color: rgba(255, 255, 255, 0.623);
+}
+
 .overname:hover{
     color:#00B4CC;
     cursor: pointer;
+}
+.noData{
+   margin: auto;
 }
 
 

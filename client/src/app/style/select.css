@@ -1,4 +1,4 @@
-select{
+select {
     cursor: pointer;
     padding: 0.1em;
     font-size: 1.5em;
@@ -6,21 +6,24 @@ select{
     color: white;
     background-color: #00B4CC;
     border: 1px solid #00B4CC;
-    width: 8em;
     text-align: center;
+    width: 100%;
+    min-width: 6em;
+    max-width: 100%;
+    
 }
 
-option{
+option {
     cursor: pointer;
+    max-width: 1em;
+   
 }
 
 option:checked {
-    background:#0196aa;
-  }
+    background: #0196aa;
+}
 
 
-option:hover
-    {
-        cursor: pointer
-        
-    }
+option:hover {
+    cursor: pointer
+}

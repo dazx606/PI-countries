@@ -10,7 +10,7 @@ server.use('/country', countryRoute);
 
 // Syncing all the models at once.
 
-conn.sync({ force: false }).then(async () => {
+conn.sync({ force: true }).then(async () => {
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
@@ -28,7 +28,7 @@ conn.sync({ force: false }).then(async () => {
             img: e.flags[0],
             continent: e.region,
             capital: e.capital ? e.capital[0] : "N/A",
-            subregion: e.subregion,
+            subregion: e.subregion ? e.subregion: "N/A",
             area: parseInt(e.area) < 0 ? 0 : parseInt(e.area),
             population: parseInt(e.population)
           }
