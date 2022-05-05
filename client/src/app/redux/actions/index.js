@@ -1,6 +1,6 @@
 import { findAll, findContinents, getOne } from "../../services/countriesService";
 import { findAllAc, getCountAct } from "../../services/activitiesService";
-import { ALL, FILTER_CONT, FILT_ACT, GET_ACTS, GET_ALL, GET_CONTS, GET_COUNTRY, GET_PAGES, SET_ACT, SET_CONT, SET_ORDER, SET_PAGE, SET_SEARCH, SET_SEASON } from "./actionType";
+import { ALL, CLEAR_COUNTRY, FILTER_CONT, FILT_ACT, GET_ACTS, GET_ALL, GET_CONTS, GET_COUNTRY, GET_PAGES, SET_ACT, SET_CONT, SET_ORDER, SET_PAGE, SET_SEARCH, SET_SEASON } from "./actionType";
 
 
 export const getAll = (country, order, continent) => {
@@ -20,6 +20,8 @@ export const getOneCountry = (id) => {
         .catch(err=>console.log(err))
     }
 }
+
+
 
 export const allCountries = () => {
     return (dispatch) => {
@@ -112,6 +114,12 @@ export const setSeason = (season) =>{
         payload: season
     }
 };
+
+export const clear = () =>{
+    return{
+        type: CLEAR_COUNTRY,
+    }
+}
 
 
 

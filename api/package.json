@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon -L",
-    "test": "mocha -w ./tests/**/*.spec.js"
+    "test": "jest --verbose"
   },
   "author": "Henry",
   "license": "ISC",
@@ -28,9 +28,10 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "jest": "^28.0.3",
     "mocha": "^8.2.1",
     "nodemon": "^2.0.6",
-    "supertest": "^6.0.1",
+    "supertest": "^6.2.3",
     "supertest-session": "^4.1.0"
   }
 }

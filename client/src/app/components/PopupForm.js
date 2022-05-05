@@ -25,7 +25,7 @@ export default function PopupForm() {
         if (input.season === "") errors.season = 'Season is required';
 
         if (!input.duration) errors.duration = 'Duration is required';
-        else if (input.duration < 0) errors.duration = 'Duration must be a possitive number';
+        else if (input.duration < 1) errors.duration = 'Duration must be greater than 0';
         else if (input.duration > 999) errors.duration = 'Duration must be a lowe than 999 hours';
 
         if (input.countries?.length < 1) errors.country = "Country must be selected";
@@ -90,7 +90,7 @@ export default function PopupForm() {
                 })
                 dispatch(setSeason(""));
                 setCheackSeason(false);
-                wasChecked.forEach(e => document.getElementById(e).checked = false);
+                setWasChecked([]);
                 dispatch(getActivities());
                 response.message && alert(response.message)
 

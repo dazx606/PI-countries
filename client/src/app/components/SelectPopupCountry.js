@@ -10,8 +10,10 @@ export default function SelectPopupCountry(props) {
                     {   
                         props.options &&
                         props.options.map(e => (
-                            <div key={e.id} className={props.check?.includes(e.id)?"check":""} ><label ><input type="checkbox" 
-                            onClick={props.click} id={e.id} value={e.name}/> {e.name && e.name[0].toUpperCase() + e.name.slice(1)}</label></div>
+                            <div key={e.id} 
+                            className={props.check?.includes(e.id)?"check":""} 
+                            ><label ><input type="checkbox" checked={props.check?.includes(e.id)} 
+                            onChange={props.click} id={e.id} value={e.name}/> {e.name && e.name[0].toUpperCase() + e.name.slice(1)}</label></div>
                         ))
                     }
                 </div>

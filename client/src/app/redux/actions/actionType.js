@@ -13,3 +13,4 @@ export const FILT_ACT = "FILT_ACT";
 export const SET_ACT = "SET_ACT";
 export const ALL = "ALL";
 export const SET_SEASON = "SET_SEASON";
+export const CLEAR_COUNTRY = "CLEAR_COUNTRY"

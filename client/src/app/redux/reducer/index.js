@@ -1,4 +1,4 @@
-import { ALL, FILTER_CONT, FILT_ACT, GET_ACTS, GET_ALL, GET_CONTS, GET_COUNTRY, GET_PAGES, SET_ACT, SET_CONT, SET_ORDER, SET_PAGE, SET_SEARCH, SET_SEASON } from "../actions/actionType"
+import { ALL, CLEAR_COUNTRY, FILTER_CONT, FILT_ACT, GET_ACTS, GET_ALL, GET_CONTS, GET_COUNTRY, GET_PAGES, SET_ACT, SET_CONT, SET_ORDER, SET_PAGE, SET_SEARCH, SET_SEASON } from "../actions/actionType"
 
 const initialState = {
     countries: [],
@@ -113,6 +113,13 @@ export default function rootReducer(state = initialState, { type, payload }) {
             return{
                 ...state,
                 activity: payload
+            }
+        }
+
+        case CLEAR_COUNTRY:{
+            return{
+                ...state,
+                country:{}
             }
         }
 

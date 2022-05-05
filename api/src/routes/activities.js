@@ -110,6 +110,7 @@ router.get("/:NameActivity", async (req, res, next) => {
     let { order, name, continent } = req.query;
     let continents = ["Europe", "Asia", "Americas", "Africa", "Oceania", "Antarctic"]
     try {
+        console.log(NameActivity)
         let activity = await Activity.findOne({ where: { name: NameActivity } });
         let countries = await activity.getCountries({ order: [["name", "ASC"]] });
 

@@ -16,7 +16,6 @@ select {
 option {
     cursor: pointer;
     max-width: 1em;
-   
 }
 
 option:checked {
