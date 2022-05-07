@@ -4,7 +4,7 @@ const { Sequelize, Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
+  DB_USER2, DB_PASSWORD2, DB_HOST2, DB_NAME2
 } = process.env;
 
 //----------------------------------------HEROKU CONECTION------------------------------
