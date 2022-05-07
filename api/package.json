@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -L",
+  
+    "start": "node .",
+    "start:dev": "-L",
     "test": "jest --verbose"
   },
   "author": "Henry",
