@@ -2,6 +2,7 @@ import "../style/style.css"
 import "../style/card.css"
 import { useDispatch } from "react-redux"
 import { clear } from "../redux/actions";
+import Loader from "./Loader";
 
 export default function Card(props) {
 
@@ -13,7 +14,7 @@ export default function Card(props) {
         <button onClick={()=>{props.onClose(); dispatch(clear())}}>X</button>
         <div>
           {
-            props.img?<img src={props.img} alt="flagImg" />:<h1>Loading...</h1>
+            props.img?<img src={props.img} alt="flagImg" />:<Loader/>
           }
           
         </div>

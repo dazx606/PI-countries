@@ -103,6 +103,12 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
+router.delete("/:id", (req,res,next)=>{
+    let {id} = req.params;
+    Country.destroy({where:{id:id}}).then(res.send("done")).catch(err=>next(err))
+    
+})
+
 
 
 

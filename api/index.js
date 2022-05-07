@@ -2,6 +2,7 @@ const server = require('./src/app.js');
 const { conn, Country } = require('./src/db.js');
 const axios = require('axios').default;
 const countryRoute = require('./src/routes');
+const {PORT} = process.env;
 
 server.use('/country', countryRoute);
 
@@ -11,7 +12,7 @@ server.use('/country', countryRoute);
 // Syncing all the models at once.
 
 conn.sync({ force: false }).then(async () => {
-  server.listen(3001, () => {
+  server.listen(PORT, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
   //----------------------db push -----------------------------

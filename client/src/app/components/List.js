@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { getAll, getOneCountry } from "../redux/actions";
 import "../style/table.css"
 import Card from "./Card";
+import Loader from "./Loader";
 
 
 
@@ -91,10 +92,10 @@ export default function List() {
                 </table>
             </div>
             <div className="country-popup" hidden={show}>
-               <Card onClose={()=>{closeForm()}} name={country.country?.name} img={country.country?.img}
+               {country.country?<Card onClose={()=>{closeForm()}} name={country.country?.name} img={country.country?.img}
                activities={country.activities} id={country.country?.id} capital={country.country?.capital}
                area={country.country && dot(country.country.area)} subregion={country.country?.subregion}
-               continent={country.country?.continent} population={country.country && dot(country.country.population)}/>
+               continent={country.country?.continent} population={country.country && dot(country.country.population)}/>:<Loader/>}
             </div>
         </div>
 

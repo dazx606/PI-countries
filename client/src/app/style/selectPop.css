@@ -28,15 +28,15 @@
     overflow:auto;/* to get scroll */
     font-size: 1.3em;
     text-align: left;
+    
+  }
+
+  label{
+    display: block;
   }
   
   /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 0.8em 1em;
-    text-decoration: none;
-    display: block;
-  }
+
   
 
   .dropdown-content a:hover {background-color: #ddd;}

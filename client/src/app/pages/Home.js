@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getAll } from "../redux/actions";
 
+
 function Home(){
     
     const dispatch = useDispatch();
