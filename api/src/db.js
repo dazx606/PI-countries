@@ -4,7 +4,7 @@ const { Sequelize, Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER2, DB_PASSWORD2, DB_HOST2, DB_NAME2
+  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
 } = process.env;
 
 //----------------------------------------HEROKU CONECTION------------------------------
@@ -22,9 +22,9 @@ const sequelize = new Sequelize({
     }
   },
 });
-process.on('uncaughtException', function (err) {
-  console.log(err);
-});
+// process.on('uncaughtException', function (err) {
+//   console.log(err);
+// });
 //-----------------------------------------------------------------------------------------
 
 // const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {

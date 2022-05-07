@@ -2,7 +2,7 @@ const server = require('./src/app.js');
 const { conn, Country } = require('./src/db.js');
 const axios = require('axios').default;
 const countryRoute = require('./src/routes');
-const {PORT} = process.env;
+const PORT = process.env.PORT || 3001;
 
 server.use('/country', countryRoute);
 

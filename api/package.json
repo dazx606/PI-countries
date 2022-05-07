@@ -6,7 +6,7 @@
   "scripts": {
   
     "start": "node .",
-    "start:dev": "-L",
+    "start:dev": "nodemon -L",
     "test": "jest --verbose"
   },
   "author": "Henry",
