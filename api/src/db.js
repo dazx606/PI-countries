@@ -22,6 +22,9 @@ const sequelize = new Sequelize({
     }
   },
 });
+process.on('uncaughtException', function (err) {
+  console.log(err);
+});
 //-----------------------------------------------------------------------------------------
 
 // const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
