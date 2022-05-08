@@ -8,30 +8,17 @@ const {
 } = process.env;
 
 //----------------------------------------HEROKU CONECTION------------------------------
-const sequelize = new Sequelize({
-  database: DB_NAME2,
-  username: DB_USER2,
-  password: DB_PASSWORD2,
-  host: DB_HOST2,
-  port: 5432,
-  dialect: "postgres",
+sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialectOptions: {
     ssl: {
-      require: true, // This will help you. But you will see nwe error
-      rejectUnauthorized: false // This line will fix new error
+      require: true,
+      rejectUnauthorized: false
     }
-  },
-});
-const { Client } = require('pg');
-
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
   }
-});
+}
+);
 
-client.connect();
+
 
 //-----------------------------------------------------------------------------------------
 
