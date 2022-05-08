@@ -18,8 +18,6 @@ sequelize = new Sequelize(process.env.DATABASE_URL, {
 }
 );
 
-
-
 //-----------------------------------------------------------------------------------------
 
 // const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
