@@ -4,7 +4,7 @@ const { Sequelize, Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER2, DB_PASSWORD2, DB_HOST2, DB_NAME2
+  DB_USER2, DB_PASSWORD2, DB_HOST2, DB_NAME2, DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
 } = process.env;
 
 //----------------------------------------HEROKU CONECTION------------------------------
@@ -17,14 +17,22 @@ const sequelize = new Sequelize({
   dialect: "postgres",
   dialectOptions: {
     ssl: {
-      //require: true, // This will help you. But you will see nwe error
+      require: true, // This will help you. But you will see nwe error
       rejectUnauthorized: false // This line will fix new error
     }
   },
 });
-// process.on('uncaughtException', function (err) {
-//   console.log(err);
-// });
+const { Client } = require('pg');
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+client.connect();
+
 //-----------------------------------------------------------------------------------------
 
 // const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
