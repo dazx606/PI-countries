@@ -34,16 +34,13 @@
   label{
     display: block;
   }
-  
-  /* Links inside the dropdown */
 
-  
-
-  .dropdown-content a:hover {background-color: #ddd;}
   
 
   .dropdown:hover .dropdown-content {display: block;}
-  
+  .dropbtn:hover{
+    cursor: pointer;
+  }
 
   .dropdown:hover .dropbtn {background-color: #137380;}
 

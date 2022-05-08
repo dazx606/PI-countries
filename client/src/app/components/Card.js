@@ -12,12 +12,11 @@ export default function Card(props) {
     <div className="card-container">
       <div className="card">
         <button onClick={()=>{props.onClose(); dispatch(clear())}}>X</button>
-        <div>
+          <div>
           {
-            props.img?<img src={props.img} alt="flagImg" />:<Loader/>
+            props.img?<img src={props.img} alt="flagImg" className="hola"/>:<Loader/>
           }
-          
-        </div>
+          </div>
         <h3 className="">{props.name&& props.name[0].toUpperCase() + props.name.slice(1)}</h3>
         <h4>ID: {props.id}</h4>
         <div className="">

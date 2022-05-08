@@ -6,11 +6,17 @@
     height: auto;
     width: 30vw;
     background-color: rgb(231, 237, 243);
-   
     border-radius: 1em;
     
 }
 
+.hola{
+    min-width: none;
+    min-height: none;
+    width: 80%;
+    height: auto;
+    padding-top: 1em;
+}
 
 @media (max-width: 980px) {
     .card-container{position: absolute;
@@ -22,12 +28,9 @@
 }}
 
 @media (max-width: 570px) {
-    .card-container{position: absolute;
-    top:8em;
+    .card-container{
     width: 70vw;
     left: 15vw;
-    height: auto;
-    background-color: rgb(231, 237, 243);
 }}
 
 .card-container button{
@@ -45,9 +48,4 @@
 
 .card-container button:hover{
     cursor: pointer;
-}
-
-.card-container img{
-    padding-top: 0.5em;
-    
 }

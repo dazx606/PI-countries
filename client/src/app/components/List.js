@@ -71,7 +71,7 @@ export default function List() {
                         countries && countries.slice(page <= 1 ? 0 : ((page-1)*10)-1, page <=1 ? 9 : (page*10-1)).map(e => (
                             <tr className="overname" key={e.id} onClick={()=>popup(e)}>
                                 <th>     </th>
-                                <th><img src={e.img} alt={e.img} /></th>
+                                <th><img className="img-table" src={e.img} alt={e.img} /></th>
                                 <th id={e.id} >{e.name.charAt(0).toUpperCase() + e.name.slice(1)}</th>
                                 <th>{e.continent}</th>
                                 <th>{e.subregion}</th>
