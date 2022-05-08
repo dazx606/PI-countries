@@ -15,12 +15,12 @@ const sequelize = new Sequelize({
   host: DB_HOST2,
   port: 5432,
   dialect: "postgres",
-  // dialectOptions: {
-  //   ssl: {
-  //     require: true, // This will help you. But you will see nwe error
-  //     rejectUnauthorized: false // This line will fix new error
-  //   }
-  // },
+  dialectOptions: {
+    ssl: {
+      //require: true, // This will help you. But you will see nwe error
+      rejectUnauthorized: false // This line will fix new error
+    }
+  },
 });
 // process.on('uncaughtException', function (err) {
 //   console.log(err);
