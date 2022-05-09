@@ -103,3 +103,10 @@ label:hover {cursor: pointer;}
 .season{
     padding: 0.5em;
 }
+
+#create:disabled {
+    cursor: default;
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}

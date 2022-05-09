@@ -15,18 +15,22 @@ export default function PopupForm() {
     function validate(input) {
 
         let errors = {};
+       
 
         if (!input.activity) errors.activity = 'Activity is required';
         else if (input.activity.length < 3 || input.activity.length > 15) errors.activity = "length must be greater than 3 and lower than 15"
+        else if(!/^[a-zA-Z0-9\s]*$/.test(input.activity)) errors.activity = 'Especial Characters are not allowed'
 
         if (!input.difficulty) errors.difficulty = 'Difficulty is required and must be a number between 1 and 5';
-        else if (parseInt(input.difficulty) < 1 || parseInt(input.difficulty) > 5) errors.difficulty = 'Difficulty must be a number between 1 and 5';
+        else if (input.difficulty < 1 || input.difficulty > 5) errors.difficulty = 'Difficulty must be a number between 1 and 5';
+        else if(input.difficulty.length>5) errors.difficulty = "Only 3 decimals are available"
 
         if (input.season === "") errors.season = 'Season is required';
 
         if (!input.duration) errors.duration = 'Duration is required';
-        else if (input.duration < 1) errors.duration = 'Duration must be greater than 0';
-        else if (input.duration > 999) errors.duration = 'Duration must be a lowe than 999 hours';
+        else if (input.duration <= 0 ||input.duration > 999) errors.duration = 'Duration must be greater than 0 and lower than 999';
+        else if(input.duration.length>5) errors.duration = "Only 3 decimals are available"
+     
 
         if (input.countries?.length < 1) errors.country = "Country must be selected";
 
@@ -80,7 +84,7 @@ export default function PopupForm() {
 
     function handleClick(event) {
         event.preventDefault();
-
+        
         createActivity(document.getElementById("activity").value, document.getElementById("duration").value
             , document.getElementById("difficulty").value, season, wasChecked)
             .then(response => {
@@ -179,12 +183,12 @@ export default function PopupForm() {
                         <output className="danger">{errors.difficulty}</output>
                     </div>
                     <div>
-                        <label className="number" htmlFor="duration"><b>Duration [hr]</b></label>
-                        <input type="text" placeholder="Enter Duration" name="duration" id="duration" onChange={handleInputChange}
+                        <label className="duration" htmlFor="duration"><b>Duration [hr]</b></label>
+                        <input type="number" placeholder="Enter Duration" name="duration" id="duration" onChange={handleInputChange}
                             value={input.duration} />
                         <output className="danger">{errors.duration}</output>
                     </div>
-                    <button type="button" className="btn" disabled={block()} onClick={(e) => handleClick(e)}>Add</button>
+                    <button type="button" className="btn" id="create" disabled={block()} onClick={(e) => handleClick(e)}>Add</button>
                     <button type="button" className="btn cancel" onClick={() => closeForm()}>Close</button>
                 </form>
             </div>
