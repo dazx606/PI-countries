@@ -8,17 +8,27 @@ const {
 } = process.env;
 
 //----------------------------------------HEROKU CONECTION------------------------------
+const Sequelize = require('sequelize');
 sequelize = new Sequelize(process.env.DATABASE_URL, {
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
     }
   }
-}
 );
 
-//-----------------------------------------------------------------------------------------
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+
+//-------------------------------------LOCAL----------------------------------------------------
 
 // const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
 //   logging: false, // set to console.log to see the raw SQL queries

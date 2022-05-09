@@ -9,7 +9,7 @@ describe('Country model', () => {
   describe('Validators', () => {
     beforeEach(() => Country.sync({ force: true }));
     describe('name', () => {
-      it('should throw an error if name is null', (done) => {
+      it('should throw an error if ID is null', (done) => {
         let country={name: 'Argentina',
         img:"a",
         continent:"Americas",
