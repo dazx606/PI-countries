@@ -4,12 +4,13 @@ const { Sequelize, Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER2, DB_PASSWORD2, DB_HOST2, DB_NAME2, DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
+ DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
 } = process.env;
 
 //----------------------------------------HEROKU CONECTION------------------------------
-
-sequelize = new Sequelize(process.env.DATABASE_URL, {
+let sequelize;
+if(process.env.DATABASE_URL){
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialectOptions: {
       ssl: {
         require: true,
@@ -27,13 +28,17 @@ sequelize
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
+} else {
+  //-------------------------------------LOCAL----------------------------------------------------
 
-//-------------------------------------LOCAL----------------------------------------------------
+  sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
+  logging: false, // set to console.log to see the raw SQL queries
+  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+});
+}
 
-// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-//   logging: false, // set to console.log to see the raw SQL queries
-//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-// });
+
+
 
 const basename = path.basename(__filename);
 
