@@ -1,0 +1,31 @@
+
+option:checked {
+    background: #0196aa;
+}
+select:hover{
+    background-color: #137380;
+    border-color: #137380;;
+}
+option:hover {
+    cursor: pointer   
+}
+option {
+    cursor: pointer;
+    max-width: 1em;
+    background-color: #00B4CC;
+}
+select {
+    cursor: pointer;
+    padding: 0.1em;
+    font-size: 1.5em;
+    border-radius: 0.25em;
+    color: white;
+    background-color: #00B4CC;
+    border: 1px solid #00B4CC;
+    text-align: center;
+    width: 100%;
+    min-width: 6em;
+    max-width: 100%;
+    transition: 0.3s;
+    
+}

@@ -1,0 +1,112 @@
+
+.open-button {
+    background-color: #00B4CC;
+    color: white;
+    padding: 0.5em 1.3em;
+    border: none;
+    cursor: pointer;
+    
+    width: 30vh;
+    font-size: 1.5em;
+    border-radius: 0.3em;
+}
+
+.open-button:hover{
+    background-color: #137380;
+}
+
+.form-popup {
+    margin-top: 2em;
+    position: sticky;
+    top: 2em;
+    left: 15vw;
+    border: 1px solid rgba(0, 0, 0, 0.393);
+    z-index: 9;
+    width: 70vw;
+    /* height: 50vh; */
+    height: auto;
+    border-radius: 1em;
+ }
+
+
+.form-container {
+
+    padding: 1em;
+    background-color: rgba(255, 255, 255, 0.678);
+    border-radius: 1em;
+}
+
+
+.form-container input[type=text],
+.form-container input[type=number] {
+    width: 94%;  
+    padding: 1em;
+    margin: 0.3em 0 1.5em 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+@media (max-width: 400px){
+    .form-container input[type=text],
+.form-container input[type=number] {
+    width: 90%;  
+    padding: 1em;
+    margin: 0.3em 0 1.5em 0;
+    border: none;
+    background: #f1f1f1;
+}
+}
+
+label:hover {cursor: pointer;}
+
+
+.open-button:hover{
+    background-color: #137380;
+}
+
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+    background-color: #00B4CC;
+    color: white;
+    padding: 1em 1.2em;
+    border: none;
+    cursor: pointer;
+    width: 97%;
+    margin-bottom: 0.5em;
+    opacity: 0.8;
+    font-size: 1em;
+}
+
+
+.form-container .cancel {
+    background-color: rgba(255, 0, 0, 0.877);
+}
+
+
+.form-container .btn:hover,
+.open-button:hover {
+    opacity: 1;
+}
+
+.danger{
+    color: red;
+
+}
+.label{
+    padding-top: 2em;
+}
+.countries{
+    padding: 0.5em;
+}
+
+.season{
+    padding: 0.5em;
+}
+
+#create:disabled {
+    cursor: default;
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}

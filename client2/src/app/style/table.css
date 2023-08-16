@@ -1,0 +1,45 @@
+.img-table{
+    height: 1.5em;
+    width: 2em;
+}
+
+.Table{
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.BackTable{
+    border: 1px solid rgba(0, 0, 0, 0.274);
+    border-radius: 1em;
+    background-color: rgba(255, 255, 255, 0.678);
+    overflow-x:auto;
+}
+.A{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1em;
+}
+
+.Table th{
+    padding-top: 0.6em;
+    padding-bottom: 0.6em;
+    text-align: left;
+    padding-right: 2em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.138);
+}
+
+.Table tr:hover{
+    background-color: rgba(255, 255, 255, 0.623);
+}
+
+.overname:hover{
+    color:#00B4CC;
+    cursor: pointer;
+}
+.noData{
+   margin: auto;
+}
+
+

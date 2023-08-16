@@ -1,0 +1,16 @@
+.container{
+    padding: 0.5em;
+    display: flex;
+    justify-content: center;
+    color: white;
+    
+}
+
+@media (min-width: 830px) {
+    .izq1{
+        padding-right: 1.5em;
+        display: table-cell
+    }
+  }
+
+
