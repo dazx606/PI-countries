@@ -4,12 +4,14 @@ const { Sequelize, Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
- DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
+  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DATABASE_URL
 } = process.env;
 
 //----------------------------------------HEROKU CONECTION------------------------------
 let sequelize;
-if(process.env.DATABASE_URL){
+if (true
+  //process.env.DATABASE_URL
+) {
   sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialectOptions: {
       ssl: {
@@ -18,23 +20,24 @@ if(process.env.DATABASE_URL){
       }
     }
   }
-);
+  );
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
-} else {
+  sequelize
+    .authenticate()
+    .then(() => {
+      console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+      console.error('Unable to connect to the database:', err);
+    });
+}
+else {
   //-------------------------------------LOCAL----------------------------------------------------
 
   sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-});
+    logging: false, // set to console.log to see the raw SQL queries
+    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  });
 }
 
 
@@ -63,8 +66,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Activity, Country, Activity_Country } = sequelize.models;
 
 
-Country.belongsToMany(Activity,{through: 'ativities_countries'});
-Activity.belongsToMany(Country,{through: 'ativities_countries'});
+Country.belongsToMany(Activity, { through: 'ativities_countries' });
+Activity.belongsToMany(Country, { through: 'ativities_countries' });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
