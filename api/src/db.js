@@ -9,7 +9,7 @@ const {
 
 //----------------------------------------HEROKU CONECTION------------------------------
 let sequelize;
-if (true
+if (false
   //process.env.DATABASE_URL
 ) {
   sequelize = new Sequelize(process.env.DATABASE_URL, {
@@ -65,6 +65,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Activity, Country, Activity_Country } = sequelize.models;
 
+console.log(sequelize)
 
 Country.belongsToMany(Activity, { through: 'ativities_countries' });
 Activity.belongsToMany(Country, { through: 'ativities_countries' });
