@@ -9,7 +9,7 @@ const {
 
 //----------------------------------------HEROKU CONECTION------------------------------
 let sequelize;
-if (false
+if (true
   //process.env.DATABASE_URL
 ) {
   sequelize = new Sequelize(process.env.DATABASE_URL, {
